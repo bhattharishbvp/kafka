@@ -58,7 +58,7 @@ Yay, we have done the scaling and everything was working fine. Got appraisal as 
 
 Today we have an outage all of our servers are down. All of our payment client is impacted due to this. None of the client is able to make the payment. All payment fall flat on the ground. Worst of all, we have no clue about the failed payment. 
 
-All eyes were on the application designer, it was presented before the team and got approvals. Common, you gave appraisal for this :)
+All eyes were on the application designer, it was presented before the team and got approvals. C'mon, you gave appraisal for this :)
 
 Time to take a step back and think what was wrong and how to avoid such technical issues in future.
 

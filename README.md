@@ -52,6 +52,27 @@ New imporved design is
 
 ![](https://github.com/bhattharishbvp/kafka/blob/main/payment_processor_microservice_scaling.png)
 
+Yay, we have done the scaling and everything was working fine. Got appraisal as well. Life was cool until one day.
 
+# All of our payment processors are down
+
+Today we have an outage all of our servers are down. All of our payment client is impacted due to this. None of the client is able to make the payment. All payment fall flat on the ground. Worst of all, we have no clue about the failed payment. 
+
+All eyes were on the application designer, it was presented before the team and got approvals. Common, you gave appraisal for this :)
+
+Time to take a step back and think what was wrong and how to avoid such technical issues in future.
+
+
+# Streaming platform
+Someone suggested streaming platform *KAFKA* in retropestive meeting. Oh gosh, it's brilliant idea, why did we miss it before. Well let's see what it will bring on the table.
+
+1. In case of such outage, payment request are still presisted in steaming platform
+2. If streaming platform is down, client will know before hand. They can implement contingency plan before hand in palnned manner.
+3. Scaling consumer is easy now
+4. If our streaming platform support distributed system or over cloud, we can span our application over multiple region or zones
+5. It will keep track of last consumed message and our consumer will start from next offset upon restart. It might gives flexibility to go back to past offset.
+
+Let's see the new design
+![](https://github.com/bhattharishbvp/kafka/blob/main/payment_processing_with_kafka.png)
 
 

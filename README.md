@@ -49,6 +49,7 @@ With increase in client, our payment processor is not able to handle the load. M
 Now it's time to make it scalable, easy peasy. Add new nodes. voila, that's it!
 
 New imporved design is
+
 ![](https://github.com/bhattharishbvp/kafka/blob/main/payment_processor_microservice_scaling.png)
 
 

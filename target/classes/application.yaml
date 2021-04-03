@@ -1,0 +1,13 @@
+tutorials:
+  spring:
+    kafka:
+      common:
+        bootstrap.servers: localhost:9092
+      publisher:
+        acks: all
+        batchSize: 0
+        clientId: "message-producer"
+        enableIdempotence: true
+        transactionIdPrefix: "message-producer-txn"
+      subscriber:
+        enableAutoCommit: true

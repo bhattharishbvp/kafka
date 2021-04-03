@@ -30,7 +30,7 @@ our streaming platform shall give us following advantage (including but not limi
  
  # Example - payment application
  
- We have application which process the user payment and return success or failure if payment is successful or failed respectively. Use case is simple enough to understand. Let's think of functional aspect only of our application. Upon receiving a payment request, it shall do following
+ We have application which process the user payment and return success or failure if payment is successful or failed respectively. Use case is tutorials.simple enough to understand. Let's think of functional aspect only of our application. Upon receiving a payment request, it shall do following
  1) account and balance validation
  2) debiting of account
  3) credit into creditor's account

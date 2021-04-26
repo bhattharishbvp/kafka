@@ -76,6 +76,11 @@ Let's see the new design
 ![](https://github.com/bhattharishbvp/kafka/blob/main/payment_processing_with_kafka.png)
 
 
+# Transactional consumers and producer using spring
+
+# Design
+![](https://github.com/bhattharishbvp/kafka/blob/main/system-architecture.png)
+
 # Kafka Commands
 kafka-console-producer.sh --bootstrap-server localhost:9092 --topic tutorials-test
 kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic tutorials-test

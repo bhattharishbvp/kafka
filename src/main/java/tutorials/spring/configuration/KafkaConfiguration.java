@@ -46,7 +46,6 @@ public class KafkaConfiguration {
         properties.put(ProducerConfig.BATCH_SIZE_CONFIG, batchSize);
         properties.put(ProducerConfig.CLIENT_ID_CONFIG, clientId);
         properties.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, enableIdempotence);
-        properties.put(ProducerConfig.TRANSACTIONAL_ID_CONFIG, enableIdempotence);
 
         DefaultKafkaProducerFactory<String, Object> defaultKafkaProducerFactory = new DefaultKafkaProducerFactory(properties);
         defaultKafkaProducerFactory.setTransactionIdPrefix(transactionIdPrefix);

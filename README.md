@@ -102,18 +102,18 @@ or
    - check consumers for processed-message
  
 2) Abusive message
-  - run producer using command #1
+   - run producer using command #1
     > produce "Bad" or "Bad Message" (anything containing Bad word)
-  - check consumers for abusive-message
+   - check consumers for abusive-message
 
 3) Functional retryable exception 
-  - run producer using command #1
-   > produce "retry"  (anything containing retry word)
-  - check consumers for dlq-message
+   - run producer using command #1
+    > produce "retry"  (anything containing retry word)
+   - check consumers for dlq-message
 
 4) Scenario where message contains abuse and should be retried multiple times
-  - run producer using command #1
-   > produce "bad retry"  (anything containing retry word)
-  - check consumers for abusive-message with or without isolation level to see the transaction magic
-    - kafka-console-consumer.bat --bootstrap-server=localhost:9092 --topic abusive-message
-  - check consumers for dlq-message
+   - run producer using command #1
+    > produce "bad retry"  (anything containing retry word)
+   - check consumers for abusive-message with or without isolation level to see the transaction magic
+     - kafka-console-consumer.bat --bootstrap-server=localhost:9092 --topic abusive-message
+   - check consumers for dlq-message

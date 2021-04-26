@@ -26,9 +26,10 @@ public class AbusiveContentMessageScanner implements MessageScanner<String> {
 
         if(containsAbusiveWord(message)) {
             try {
+                // publish to abusive message topic
                 abusiveMessagePublisher.publish(message);
             } catch (TutorialException e) {
-                throw new TutorialRuntimeException(e.getMessage());
+                // do nothing, just log it
             }
         }
 

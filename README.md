@@ -76,3 +76,39 @@ Let's see the new design
 ![](https://github.com/bhattharishbvp/kafka/blob/main/payment_processing_with_kafka.png)
 
 
+# Kafka Commands
+kafka-console-producer.sh --bootstrap-server localhost:9092 --topic tutorials-test
+kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic tutorials-test
+
+or
+
+#commands
+ 1. Producer - kafka-console-producer.bat --bootstrap-server localhost:9092 --topic messages
+ 2. Consumers - 
+        kafka-console-consumer.bat --bootstrap-server=localhost:9092 --topic processed-message --isolation-level read_committed
+        kafka-console-consumer.bat --bootstrap-server=localhost:9092 --topic abusive-message --isolation-level read_committed
+        kafka-console-consumer.bat --bootstrap-server=localhost:9092 --topic dlq-message --isolation-level read_committed
+    
+
+#Scenarios:-
+1) Happy Path
+   - run producer using command #1
+     > produce "Hi"
+   - check consumers for processed-message
+ 
+2) Abusive message
+  - run producer using command #1
+    > produce "Bad" or "Bad Message" (anything containing Bad word)
+  - check consumers for abusive-message
+
+3) Functional retryable exception 
+  - run producer using command #1
+   > produce "retry"  (anything containing retry word)
+  - check consumers for dlq-message
+
+4) Scenario where message contains abuse and should be retried multiple times
+  - run producer using command #1
+   > produce "bad retry"  (anything containing retry word)
+  - check consumers for abusive-message with or without isolation level to see the transaction magic
+    - kafka-console-consumer.bat --bootstrap-server=localhost:9092 --topic abusive-message
+  - check consumers for dlq-message

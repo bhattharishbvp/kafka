@@ -106,7 +106,7 @@ or
     > produce "Bad" or "Bad Message" (anything containing Bad word)
    - check consumers for abusive-message
 
-3) Functional retryable exception 
+3) Functional retry-able exception 
    - run producer using command #1
     > produce "retry"  (anything containing retry word)
    - check consumers for dlq-message

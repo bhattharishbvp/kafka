@@ -78,7 +78,7 @@ Let's see the new design
 ![](https://github.com/bhattharishbvp/kafka/blob/main/payment_processing_with_kafka.png)
 
 
-# Transactional consumers and producers using spring
+# Transactional consumers and producers using spring for a message queue
 
 # Design
 ![](https://github.com/bhattharishbvp/kafka/blob/main/system-architecture.png)

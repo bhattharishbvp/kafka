@@ -58,27 +58,27 @@ Yay, we have done the scaling and everything was working fine. Got an appraisal 
 
 # All of our payment processors are down
 
-Today we have an outage all of our servers are down. All of our payments client is impacted due to this. None of the client is able to make the payment. All payment fall flat on the ground. Worst of all, we have no clue about the failed payment. 
+Today we have an outage and all of our servers are down. All of our payments clients are impacted. None of the clients is able to make the payment. All payments fall flat on the ground. Worst of all, we have no clue about the failed payment. 
 
-All eyes were on the application designer, it was presented before the team and got approvals. C'mon, you gave appraisal for this :)
+Everyone is cursing the application designer. It was presented before the team and got approvals. C'mon, you gave an appraisal for this design:)
 
-Time to take a step back and think what was wrong and how to avoid such technical issues in future.
+It's time to take a step back and think about what was wrong and how to avoid such technical issues in future.
 
 
 # Streaming platform
-Someone suggested streaming platform *KAFKA* in retropestive meeting. Oh gosh, it's brilliant idea, why did we miss it before. Well let's see what it will bring on the table.
+Someone suggested streaming platform *KAFKA* in a retrospective meeting. Oh lord, it's a brilliant idea, why did we miss it before. Well, let's see what it will bring to the table.
 
-1. In case of such outage, payment request are still presisted in steaming platform
-2. If streaming platform is down, client will know before hand. They can implement contingency plan before hand in palnned manner.
+1. In case of such outages, payment requests are still persisted in the steaming platform
+2. If the streaming platform is down, the client will know beforehand. They can implement contingency plans beforehand in a planned manner.
 3. Scaling consumer is easy now
-4. If our streaming platform support distributed system or over cloud, we can span our application over multiple region or zones
-5. It will keep track of last consumed message and our consumer will start from next offset upon restart. It might gives flexibility to go back to past offset.
+4. If our streaming platform is a distributed system, we can spin our stream platform over multiple regions or zones
+5. It will keep track of the last consumed message and our consumer will start from the next offset upon restart. It might give the flexibility to go back to past offset.
 
 Let's see the new design
 ![](https://github.com/bhattharishbvp/kafka/blob/main/payment_processing_with_kafka.png)
 
 
-# Transactional consumers and producer using spring
+# Transactional consumers and producers using spring
 
 # Design
 ![](https://github.com/bhattharishbvp/kafka/blob/main/system-architecture.png)
@@ -90,30 +90,30 @@ kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic tutorials-te
 or
 
 #commands
- 1. Producer - kafka-console-producer.bat --bootstrap-server localhost:9092 --topic messages
- 2. Consumers - 
-        kafka-console-consumer.bat --bootstrap-server=localhost:9092 --topic processed-message --isolation-level read_committed
-        kafka-console-consumer.bat --bootstrap-server=localhost:9092 --topic abusive-message --isolation-level read_committed
-        kafka-console-consumer.bat --bootstrap-server=localhost:9092 --topic dlq-message --isolation-level read_committed
-    
+ 1. Producer - kafka-console-producer.bat --bootstrap-server localhost:9092 --topic messages
+ 2. Consumers - 
+        kafka-console-consumer.bat --bootstrap-server=localhost:9092 --topic processed-message --isolation-level read_committed
+        kafka-console-consumer.bat --bootstrap-server=localhost:9092 --topic abusive-message --isolation-level read_committed
+        kafka-console-consumer.bat --bootstrap-server=localhost:9092 --topic dlq-message --isolation-level read_committed
+    
 
 #Scenarios:-
 1) Happy Path
-   - run producer using command #1
-     > produce "Hi"
-   - check consumers for processed-message
- 
+   - run producer using command #1
+     > produce "Hi"
+   - check consumers for processed-message
+ 
 2) Abusive message
-   - run producer using command #1
-    > produce "Bad" or "Bad Message" (anything containing Bad word)
-   - check consumers for abusive-message
+   - run producer using command #1
+    > produce "Bad" or "Bad Message" (anything containing Bad word)
+   - check consumers for abusive-message
 
 3) Functional retry-able exception 
-   - run producer using command #1
-    > produce "retry"  (anything containing retry word)
-   - check consumers for dlq-message
+   - run producer using command #1
+    > produce "retry"  (anything containing retry word)
+   - check consumers for dlq-message
 
-4) Scenario where message contains abuse and should be retried multiple times
+4) Scenario where the message contains abuse and should be retried multiple times
    - run producer using command #1
     > produce "bad retry"  (anything containing retry word)
    - check consumers for abusive-message with or without isolation level to see the transaction magic

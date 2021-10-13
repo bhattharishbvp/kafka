@@ -4,7 +4,6 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.StickyAssignor;
 import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.common.IsolationLevel;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,14 +11,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
-import org.springframework.kafka.config.KafkaListenerContainerFactory;
 import org.springframework.kafka.core.*;
 import org.springframework.kafka.listener.DefaultAfterRollbackProcessor;
 import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer2;
 import org.springframework.kafka.transaction.KafkaTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.util.backoff.FixedBackOff;
-import tutorials.spring.recover.TutorialKafkaRecover;
 
 import java.util.Properties;
 import java.util.function.BiConsumer;
@@ -88,7 +85,7 @@ public class KafkaConfiguration {
     public ConcurrentKafkaListenerContainerFactory<String, Object> concurrentKafkaListenerContainerFactory(
             ConsumerFactory consumerFactory,
             PlatformTransactionManager kafkaTransactionManager,
-            TutorialKafkaRecover stringMessageTutorialKafkaRecover
+            MessageRecover stringMessageRecover
     ) {
 
         ConcurrentKafkaListenerContainerFactory<String, Object> concurrentKafkaListenerContainerFactory =
@@ -97,7 +94,7 @@ public class KafkaConfiguration {
 
         // retry
         concurrentKafkaListenerContainerFactory.setAfterRollbackProcessor(
-                new DefaultAfterRollbackProcessor(recover(stringMessageTutorialKafkaRecover), new FixedBackOff(1000, 2)));
+                new DefaultAfterRollbackProcessor(recover(stringMessageRecover), new FixedBackOff(1000, 2)));
 
         //link transaction manager to subscriber
         concurrentKafkaListenerContainerFactory.getContainerProperties().setTransactionManager(kafkaTransactionManager);
@@ -105,9 +102,9 @@ public class KafkaConfiguration {
         return concurrentKafkaListenerContainerFactory;
     }
 
-    private BiConsumer<ConsumerRecord, Exception> recover(TutorialKafkaRecover stringMessageTutorialKafkaRecover) {
+    private BiConsumer<ConsumerRecord, Exception> recover(MessageRecover stringMessageRecover) {
         return ((consumerRecord, e) -> {
-            stringMessageTutorialKafkaRecover.recover(consumerRecord);
+            stringMessageRecover.recover(consumerRecord);
         });
     }
 }

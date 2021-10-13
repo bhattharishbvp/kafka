@@ -1,4 +1,4 @@
-package tutorials.simple.configuration;
+package tutorials.vanila.configuration;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;

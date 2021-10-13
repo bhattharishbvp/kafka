@@ -1,10 +1,10 @@
-package tutorials.simple;
+package tutorials.vanila;
 
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import tutorials.simple.configuration.KafkaConfiguration;
+import tutorials.vanila.configuration.KafkaConfiguration;
 
 import java.util.concurrent.ExecutionException;
 

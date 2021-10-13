@@ -1,11 +1,13 @@
 package tutorials.spring.processor;
 
+import org.springframework.stereotype.Component;
 import tutorials.exception.TutorialException;
 import tutorials.spring.publishers.Publisher;
 import tutorials.spring.scanner.MessageScanner;
 
 import java.util.List;
 
+@Component
 public class Processor<T> {
 
     private final List<MessageScanner<T>> scanners;

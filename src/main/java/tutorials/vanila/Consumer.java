@@ -1,4 +1,4 @@
-package tutorials.simple;
+package tutorials.vanila;
 
 public interface Consumer<T> {
 

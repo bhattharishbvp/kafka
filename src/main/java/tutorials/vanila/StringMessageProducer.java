@@ -1,4 +1,4 @@
-package tutorials.simple;
+package tutorials.vanila;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;

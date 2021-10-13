@@ -5,7 +5,6 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import tutorials.exception.TutorialException;
 import tutorials.exception.TutorialKafkaRetryRuntimeException;
-import tutorials.exception.TutorialRuntimeException;
 import tutorials.spring.publishers.Publisher;
 
 @Component

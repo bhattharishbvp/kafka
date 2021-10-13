@@ -3,9 +3,11 @@ package tutorials.spring.subscribers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Component;
 import tutorials.exception.TutorialException;
 import tutorials.spring.processor.Processor;
 
+@Component
 public class StringMessageSubscriber implements Subscriber<String> {
     private final static Logger LOGGER = LoggerFactory.getLogger(StringMessageSubscriber.class);
     private final Processor processor;

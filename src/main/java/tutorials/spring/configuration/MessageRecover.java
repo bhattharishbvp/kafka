@@ -1,7 +1,6 @@
-package tutorials.spring.recover;
+package tutorials.spring.configuration;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -9,16 +8,15 @@ import tutorials.exception.TutorialException;
 import tutorials.spring.publishers.Publisher;
 
 @Component
-public class MessageTutorialKafkaRecover implements TutorialKafkaRecover {
-    private final static Logger LOGGER = LoggerFactory.getLogger(MessageTutorialKafkaRecover.class);
+public class MessageRecover {
+    private final static Logger LOGGER = LoggerFactory.getLogger(MessageRecover.class);
 
     private final Publisher<String> dlqStringMessagePublisher;
 
-    public MessageTutorialKafkaRecover(Publisher dlqStringMessagePublisher) {
+    public MessageRecover(Publisher dlqStringMessagePublisher) {
         this.dlqStringMessagePublisher = dlqStringMessagePublisher;
     }
 
-    @Override
     public void recover(ConsumerRecord consumerRecord) {
         Object message = consumerRecord.value();
         LOGGER.info("All retries exhausted for message {} , putting message in DLQ", message);

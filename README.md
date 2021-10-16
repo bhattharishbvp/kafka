@@ -64,13 +64,13 @@ It's time to take a step back and think about what was wrong and how to avoid su
 
 
 # Streaming platform
-Someone suggested streaming platform *KAFKA* in a retrospective meeting. Oh lord, it's a brilliant idea, why did we miss it before. Well, let's see what it will bring to the table.
+Someone suggested streaming platform *KAFKA* in a retrospective meeting. Oh lord, it's a brilliant idea, why did we miss it. Well, let's see what it will bring to the table.
 
 1. In case of such outages, payment requests are still persisted in the steaming platform
-2. If the streaming platform is down, the client will know beforehand. They can implement contingency plans beforehand in a planned manner.
+2. If the streaming platform is down, the producers cannot produce any request. They can mark it unprocessed for future retry
 3. Scaling consumer is easy now
 4. If our streaming platform is a distributed system, we can spin our stream platform over multiple regions or zones
-5. It will keep track of the last consumed message and our consumer will start from the next offset upon restart. It might give the flexibility to go back to past offset.
+5. It will keep track of the last consumed message and our consumer will start from the next offset upon restart. It gives the flexibility to go back to past offset as well.
 
 Let's see the new design
 ![](https://github.com/bhattharishbvp/kafka/blob/main/payment_processing_with_kafka.png)

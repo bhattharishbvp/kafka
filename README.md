@@ -8,7 +8,7 @@ A stream is a continuous source of input with finite or infinite data. In today'
 Our solution has to make sure no data loss in case of heavy load or back pressure. 
 
 # Why we need streaming platform
-The event streaming platform gives us a solution that decouples publishers from consumers. That implies a publisher will not care if the consumer is available to consume the messages or not.
+The event streaming platform gives us a solution that decouples publishers from consumers. That implies, a publisher will not care if the consumer is available to consume the messages or not.
 
 Our streaming platform shall give us the following advantages (including but not limited to)
 1) publisher/consumer decoupling
@@ -25,10 +25,10 @@ Our streaming platform shall give us the following advantages (including but not
 
 
 # Kafka
-  We have good numbers of event streaming platform which has their pros and cons. We will focus on kafka in this tutorial or excercise.
+We have good numbers of event streaming platform which has their pros and cons. We will focus on kafka in this tutorial or excercise.
   
  
- # Example - payment application
+# Lets take an example of payment application to understand kafka instrument
  
 We have an application that processes the user's payment and returns success or failure if payment is successful or failure otherwise as a response. The use case is simple enough to understand. Let me talk you through the functional requirements. Upon receiving a payment request, it shall do the following
  1) account and balance validation
@@ -48,19 +48,17 @@ With the increase in the client's requests, our payment processor will not be ab
 
 Now it's time to scale it, easy peasy. Add new nodes, scale horizontally. voila, that's it!
 
-New imporved design is
-
 New improved design is
 
 ![](https://github.com/bhattharishbvp/kafka/blob/main/payment_processor_microservice_scaling.png)
 
-Yay, we have done the scaling and everything was working fine. Got an appraisal as well. Life was cool until one day.
+Yay, we have done the scaling and everything was working fine. Life was cool until one day.
 
 # All of our payment processors are down
 
-Today we have an outage and all of our servers are down. All of our payments clients are impacted. None of the clients is able to make the payment. All payments fall flat on the ground. Worst of all, we have no clue about the failed payment. 
+Today we have an outage and all of our servers are down. All of our payment's clients are impacted. None of the clients is able to make the payment. All payments fall flat on the ground. Worst of all, we have no clue about the failed payment. 
 
-Everyone is cursing the application designer. It was presented before the team and got approvals. C'mon, you gave an appraisal for this design:)
+Everyone is cursing the application designer. It was presented before the team and got approvals.
 
 It's time to take a step back and think about what was wrong and how to avoid such technical issues in future.
 
@@ -78,7 +76,7 @@ Let's see the new design
 ![](https://github.com/bhattharishbvp/kafka/blob/main/payment_processing_with_kafka.png)
 
 
-# Transactional consumers and producers using spring for a message queue
+# Let's take another example to demonstrate transactional consumers with producers using spring for a message queue application
 
 # Design
 ![](https://github.com/bhattharishbvp/kafka/blob/main/system-architecture.png)

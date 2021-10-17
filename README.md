@@ -81,39 +81,41 @@ Let's see the new design
 # Design
 ![](https://github.com/bhattharishbvp/kafka/blob/main/system-architecture.png)
 
-# Kafka Commands
-kafka-console-producer.sh --bootstrap-server localhost:9092 --topic tutorials-test
-kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic tutorials-test
+# Kafka commands for vanila code 
+1)  Console producer
+    - kafka-console-producer.sh --bootstrap-server localhost:9092 --topic tutorials-test
+    - produce "Hi"
 
-or
 
-#commands
- 1. Producer - kafka-console-producer.bat --bootstrap-server localhost:9092 --topic messages
- 2. Consumers - 
-        kafka-console-consumer.bat --bootstrap-server=localhost:9092 --topic processed-message --isolation-level read_committed
-        kafka-console-consumer.bat --bootstrap-server=localhost:9092 --topic abusive-message --isolation-level read_committed
-        kafka-console-consumer.bat --bootstrap-server=localhost:9092 --topic dlq-message --isolation-level read_committed
+# Kafka commands for spring code
+1)  Producer 
+    - kafka-console-producer.bat --bootstrap-server localhost:9092 --topic messages
+2)  Consumers with read_commited isolation level
+    - kafka-console-consumer.bat --bootstrap-server=localhost:9092 --topic processed-message --isolation-level read_committed
+    - kafka-console-consumer.bat --bootstrap-server=localhost:9092 --topic abusive-message --isolation-level read_committed
+    - kafka-console-consumer.bat --bootstrap-server=localhost:9092 --topic dlq-message --isolation-level read_committed
+3)  Consumers with no isolation level
+    - kafka-console-consumer.bat --bootstrap-server=localhost:9092 --topic abusive-message
     
 
-#Scenarios:-
-1) Happy Path
-   - run producer using command #1
-     > produce "Hi"
-   - check consumers for processed-message
+# Scenarios:-
+1)  Happy Path
+    - run producer using command #1
+    - produce "Hi"
+    - check consumers for processed-message
  
-2) Abusive message
-   - run producer using command #1
-    > produce "Bad" or "Bad Message" (anything containing Bad word)
-   - check consumers for abusive-message
+2)  Abusive message
+    - run producer using command #1
+    - produce "Bad" or "Bad Message" (anything containing Bad word)
+    - check consumers for abusive-message
 
-3) Functional retry-able exception 
-   - run producer using command #1
-    > produce "retry"  (anything containing retry word)
-   - check consumers for dlq-message
+3)  Functional retry-able exception 
+    - run producer using command #1
+    - produce "retry"  (anything containing retry word)
+    - check consumers for dlq-message
 
-4) Scenario where the message contains abuse and should be retried multiple times
-   - run producer using command #1
-    > produce "bad retry"  (anything containing retry word)
-   - check consumers for abusive-message with or without isolation level to see the transaction magic
-     - kafka-console-consumer.bat --bootstrap-server=localhost:9092 --topic abusive-message
-   - check consumers for dlq-message
+4)  Scenario where the message contains abuse and should be retried multiple times
+    - run producer using command #1
+    - produce "bad retry"  (anything containing retriable word)
+    - check consumers for abusive-message with or without isolation level to see the transaction magic
+    - check consumers for dlq-message
